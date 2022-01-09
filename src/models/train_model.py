@@ -18,7 +18,7 @@ from torch import optim
 from torch.functional import Tensor
 from torch.utils.data import DataLoader, Dataset
 
-# log = logging.getLogger(__name__)
+
 
 
 class MNISTDataset(Dataset):
@@ -39,42 +39,50 @@ class MNISTDataset(Dataset):
         return image, label
 
 
-# log = logging.getLogger(__name__)
+
 wandb.init()
 
 
-data_dir = "/Users/oliver/mlops_m6/data/processed/"
-train_images = torch.load(data_dir + "train_tensor.pth")
-test_images = torch.load(data_dir + "test_images.pth")
-train_labels = torch.load(data_dir + "train_labels.pth")
-test_labels = torch.load(data_dir + "test_labels.pth")
+@hydra.main(config_path="config", config_name='training_config.yaml')
+def train_eval(config):
+    print(f"Training configuration: \n {OmegaConf.to_yaml(config)}")
+    hparams = config.experiment
+    data_dir = os.getcwd().split('outputs/')[0] + hparams['data_dir']
+    train_images = torch.load(data_dir + "train_tensor.pth")
+    test_images = torch.load(data_dir + "test_images.pth")
+    train_labels = torch.load(data_dir + "train_labels.pth")
+    test_labels = torch.load(data_dir + "test_labels.pth")
 
-trainset = MNISTDataset(train_labels, train_images)
-batch_size = 64
-trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True)
+    trainset = MNISTDataset(train_labels, train_images)
+    batch_size = hparams['batch_size']
+    trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True)
 
-testset = MNISTDataset(test_labels, test_images)
-testloader = DataLoader(testset, batch_size=64, shuffle=True)
+    testset = MNISTDataset(test_labels, test_images)
+    testloader = DataLoader(testset, batch_size=batch_size, shuffle=True)
 
 
-model = MyAwesomeModel()
-wandb.watch(model, log_freq=100)
-checkpoint_callback = ModelCheckpoint(
-    dirpath="./models", monitor="train_loss", mode="min"
-)
-early_stopping_callback = EarlyStopping(
-    monitor="train_loss", patience=3, verbose=True, mode="min"
-)
+    model = MyAwesomeModel(hparams['lr'])
+    wandb.watch(model, log_freq=hparams['log_freq'])
+    checkpoint_callback = ModelCheckpoint(
+        dirpath="./models", monitor="train_loss", mode="min"
+    )
+    early_stopping_callback = EarlyStopping(
+        monitor="train_loss", patience=hparams['patience'], verbose=True, mode="min"
+    )
 
-trainer = Trainer(
-    limit_train_batches=0.2,
-    callbacks=[checkpoint_callback, early_stopping_callback],
-    logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
-)
+    trainer = Trainer(
+        limit_train_batches=hparams['limit_train_batches'],
+        callbacks=[checkpoint_callback, early_stopping_callback],
+        logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
+        max_epochs=hparams['n_epochs']
+    )
 
-trainer.fit(model, trainloader)
-trainer.test(model, testloader)
+    trainer.fit(model, trainloader)
+    trainer.test(model, testloader)
 
+
+if __name__ == '__main__':
+    train_eval()
 
 # print('#######'*5, os.getcwd())
 # @hydra.main(config_path="config", config_name='default_config.yaml')

@@ -1,0 +1,165 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.9
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    - 1: train_loss
+      5: 1
+      6:
+      - 1
+    - 1: train_acc
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv3\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: test_acc
+      5: 1
+      6:
+      - 1
+    python_version: 3.9.7
+    start_time: 1641727863
+    t:
+      1:
+      - 1
+      - 9
+      2:
+      - 1
+      - 9
+      3:
+      - 1
+      - 7
+      4: 3.9.7
+      5: 0.12.9
+      8:
+      - 5

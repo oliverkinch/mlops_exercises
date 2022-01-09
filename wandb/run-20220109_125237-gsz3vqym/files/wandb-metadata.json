@@ -1,0 +1,22 @@
+{
+    "os": "macOS-10.16-x86_64-i386-64bit",
+    "python": "3.9.7",
+    "heartbeatAt": "2022-01-09T11:52:39.183918",
+    "startedAt": "2022-01-09T11:52:37.835677",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/oliver/mlops_exercises/src/models/train_model.py",
+    "codePath": "src/models/train_model.py",
+    "git": {
+        "remote": "https://github.com/oliverkinch/mlops_exercises.git",
+        "commit": "b7067259fd82ef5185ff2fd9a0f268d31525b909"
+    },
+    "email": "oliver.kinch@alexandra.dk",
+    "root": "/Users/oliver/mlops_exercises",
+    "host": "alex5925.local",
+    "username": "oliver",
+    "executable": "/Users/oliver/opt/anaconda3/envs/my_environment/bin/python"
+}
