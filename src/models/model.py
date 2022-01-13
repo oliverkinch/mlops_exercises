@@ -1,7 +1,5 @@
-import hydra
 import torch
 import torch.nn.functional as F
-from omegaconf import OmegaConf
 from pytorch_lightning import LightningModule
 from torch import nn, optim
 
@@ -72,7 +70,7 @@ class MyAwesomeModel(LightningModule):
     def test_step(self, batch, batch_idx):
         data, target = batch
         preds = self(data)
-        loss = self.criterium(preds, target.long())
+        # loss = self.criterium(preds, target.long())
         acc = (target == preds.argmax(dim=-1)).float().mean()
         self.log("test_acc", acc)
 

@@ -1,13 +1,7 @@
 import argparse
-import sys
-
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
-import torch.nn as nn
 from model import MyAwesomeModel
-from torch import optim
-from torch.functional import Tensor
 from torch.utils.data import DataLoader, Dataset
 
 

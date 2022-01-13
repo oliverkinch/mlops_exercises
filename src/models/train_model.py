@@ -1,20 +1,12 @@
-import argparse
-import logging
-import os
-import sys
 
+import os
 import hydra
-import matplotlib.pyplot as plt
-import numpy as np
 import pytorch_lightning
 import torch
-import torch.nn as nn
 from model import MyAwesomeModel
 from omegaconf import OmegaConf
-from pytorch_lightning import Trainer, callbacks
+from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
-from torch import optim
-from torch.functional import Tensor
 from torch.utils.data import DataLoader, Dataset
 
 import wandb
