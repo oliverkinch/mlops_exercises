@@ -2,10 +2,6 @@ hydra-core==1.1.1
 matplotlib==3.5.1
 numpy==1.21.2
 omegaconf==2.1.1
-pytest==6.2.5
 pytorch_lightning==1.5.8
-scikit_learn==1.0.2
-seaborn==0.11.2
-setuptools==60.2.0
+setuptools==59.5.0
 torch==1.10.1
-torchvision==0.11.2
