@@ -28,4 +28,5 @@ jobs:
         pip install -r requirements_tests.txt
     - name: Test with isort
       run: |
+        pip install isort
         isort
