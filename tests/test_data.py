@@ -20,7 +20,6 @@ pass
 #         return image, label
 
 
-
 # data_dir = 'data/processed/'
 
 # # data_dir = os.getcwd().split('outputs/')[0] + hparams['data_dir']
