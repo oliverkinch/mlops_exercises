@@ -1,4 +1,6 @@
 [core]
-    remote = storage
+    remote = remote_storage
 ['remote "storage"']
     url = gdrive://1wbxiZVi_3x0Ogv9XvJzzuZH5-q2UGz3_
+['remote "remote_storage"']
+    url = gs://oliverkinch_bucket/

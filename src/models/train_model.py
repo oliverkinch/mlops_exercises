@@ -9,7 +9,7 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 from torch.utils.data import DataLoader, Dataset
 
-import wandb
+# import wandb
 
 
 class MNISTDataset(Dataset):
@@ -30,7 +30,7 @@ class MNISTDataset(Dataset):
         return image, label
 
 
-wandb.init()
+# wandb.init()
 
 
 @hydra.main(config_path="config", config_name="training_config.yaml")
@@ -51,7 +51,7 @@ def train_eval(config):
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=True)
 
     model = MyAwesomeModel(hparams["lr"])
-    wandb.watch(model, log_freq=hparams["log_freq"])
+    # wandb.watch(model, log_freq=hparams["log_freq"])
     checkpoint_callback = ModelCheckpoint(
         dirpath="./models", monitor="train_loss", mode="min"
     )
@@ -62,9 +62,9 @@ def train_eval(config):
     trainer = Trainer(
         limit_train_batches=hparams["limit_train_batches"],
         callbacks=[checkpoint_callback, early_stopping_callback],
-        logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
         max_epochs=hparams["n_epochs"],
     )
+    # logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
 
     trainer.fit(model, trainloader)
     trainer.test(model, testloader)
