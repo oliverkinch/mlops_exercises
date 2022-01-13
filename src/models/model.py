@@ -30,7 +30,7 @@ from omegaconf import OmegaConf
 
 
 class MyAwesomeModel(LightningModule):
-    def __init__(self, lr):
+    def __init__(self, lr=1e-2):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 32, kernel_size=5)
         self.conv2 = nn.Conv2d(32, 32, kernel_size=5)
