@@ -3,7 +3,7 @@ mlops_exercises
 
 All code for exercises regarding the MNIST project.
 
-Create data with `make data`
+Create data with `make data`.
 Train model with `make train`
 
 
