@@ -49,9 +49,7 @@ if __name__ == "__main__":
     # visualize the last conv layer filters
     plt.figure(figsize=(20, 17))
     for i, filter in enumerate(model_weights[2]):
-        plt.subplot(
-            8, 8, i + 1
-        )
+        plt.subplot(8, 8, i + 1)
         # (8, 8) because in conv0 we have 7x7 filters and total of 64
         # (see printed shapes)
         plt.imshow(filter[0, :, :].detach(), cmap="gray")

@@ -73,7 +73,7 @@ class MyAwesomeModel(LightningModule):
     def test_step(self, batch, batch_idx):
         data, target = batch
         preds = self(data)
-        loss = self.criterium(preds, target.long())
+        # loss = self.criterium(preds, target.long())
         acc = (target == preds.argmax(dim=-1)).float().mean()
         self.log("test_acc", acc)
 

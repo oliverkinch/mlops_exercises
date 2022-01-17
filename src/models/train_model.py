@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader, Dataset
 # import wandb
 
 
-
 class MNISTDataset(Dataset):
     def __init__(self, labels, images, transform=None):
 
@@ -52,9 +51,7 @@ def train_eval(config):
 
     model = MyAwesomeModel(hparams["lr"])
     # wandb.watch(model, log_freq=hparams["log_freq"])
-    checkpoint_callback = ModelCheckpoint(
-        dirpath="", monitor="train_loss", mode="min"
-    )
+    checkpoint_callback = ModelCheckpoint(dirpath="", monitor="train_loss", mode="min")
     early_stopping_callback = EarlyStopping(
         monitor="train_loss", patience=hparams["patience"], verbose=True, mode="min"
     )
@@ -67,7 +64,7 @@ def train_eval(config):
     # logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
 
     trainer.fit(model, trainloader)
-    
+
     trainer.test(model, testloader)
     trainer.save_checkpoint("example2.ckpt")
     checkpoint_callback.best_model_path

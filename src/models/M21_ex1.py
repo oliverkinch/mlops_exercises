@@ -5,6 +5,7 @@ import time
 import numpy as np
 import ptflops
 
+
 class MNISTDataset(Dataset):
     def __init__(self, labels, images, transform=None):
 
@@ -23,13 +24,11 @@ class MNISTDataset(Dataset):
         return image, label
 
 
-
-
-data_dir = 'data/processed/'
+data_dir = "data/processed/"
 train_images = torch.load(data_dir + "train_tensor.pth")
-test_images = torch.load(data_dir + 'test_images.pth')
+test_images = torch.load(data_dir + "test_images.pth")
 train_labels = torch.load(data_dir + "train_labels.pth")
-test_labels = torch.load(data_dir + 'test_labels.pth')
+test_labels = torch.load(data_dir + "test_labels.pth")
 
 trainset = MNISTDataset(train_labels, train_images)
 batch_size = 64
@@ -39,12 +38,9 @@ testset = MNISTDataset(test_labels, test_images)
 testloader = DataLoader(testset, batch_size=64, shuffle=True)
 
 
-
 mobilenet = torchvision.models.mobilenet_v3_large(pretrained=True)
 
 resnet = torchvision.models.resnet152(pretrained=True)
-
-
 
 
 def time_model(model, loader):
@@ -62,7 +58,8 @@ def time_model(model, loader):
             results.append(end - start)
 
     return np.mean(results)
-            
+
+
 # print("mobilenet mean time for one epoch", time_model(mobilenet, testloader))
 # print("resnet mean time for one epoch", time_model(resnet, testloader))
 
@@ -74,8 +71,8 @@ def n_parameters(model):
     return params
 
 
-# print('resnet \n') 
+# print('resnet \n')
 # print(n_parameters(resnet))
 
-# print('mobile \n') 
+# print('mobile \n')
 # print(n_parameters(mobilenet))

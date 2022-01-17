@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-results_path = 'reports/time_results.txt'
+results_path = "reports/time_results.txt"
 
 df = pd.read_csv(results_path, index_col=False)
 
