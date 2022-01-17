@@ -10,6 +10,7 @@ from model import MyAwesomeModel
 import torchdrift
 import matplotlib.pyplot as plt
 import pandas as pd
+import sklearn
 
 
 class MNISTDataset(Dataset):
@@ -84,7 +85,8 @@ table_data = {
     'P-value': []
     }
 
-for kernel in kernels:
+plt.figure(figsize=(15, 5))
+for i, kernel in enumerate(kernels):
     drift_detector = torchdrift.detectors.KernelMMDDriftDetector()
 
     torchdrift.utils.fit(trainloader, model, drift_detector)
@@ -97,9 +99,20 @@ for kernel in kernels:
     table_data['score'].append(score)
     table_data['P-value'].append(p_val)
 
+    N_base = drift_detector.base_outputs.size(0)
+    mapper = sklearn.manifold.Isomap(n_components=2)
+    base_embedded = mapper.fit_transform(drift_detector.base_outputs)
+    features_embedded = mapper.transform(features)
+    plt.subplot(1, 3, i + 1)
+    plt.scatter(base_embedded[:, 0], base_embedded[:, 1], s=2, c='r')
+    plt.scatter(features_embedded[:, 0], features_embedded[:, 1], s=4)
+    plt.title(f'score {score:.2f} p-value {p_val:.2f}');
+
 columns = [
     'GaussianKernel',
     'ExpKernel',
     'ReationalQuadraticKernel'
 ]
 df_table = pd.DataFrame(data=table_data, columns=columns)
+
+
