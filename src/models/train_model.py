@@ -1,7 +1,5 @@
-
 import os
 import hydra
-import pytorch_lightning
 import torch
 from model import MyAwesomeModel
 from omegaconf import OmegaConf
@@ -9,7 +7,9 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 from torch.utils.data import DataLoader, Dataset
 
+
 # import wandb
+
 
 
 class MNISTDataset(Dataset):
@@ -53,7 +53,7 @@ def train_eval(config):
     model = MyAwesomeModel(hparams["lr"])
     # wandb.watch(model, log_freq=hparams["log_freq"])
     checkpoint_callback = ModelCheckpoint(
-        dirpath="./models", monitor="train_loss", mode="min"
+        dirpath="", monitor="train_loss", mode="min"
     )
     early_stopping_callback = EarlyStopping(
         monitor="train_loss", patience=hparams["patience"], verbose=True, mode="min"
@@ -67,7 +67,10 @@ def train_eval(config):
     # logger=pytorch_lightning.loggers.WandbLogger(project="dtu_mlops"),
 
     trainer.fit(model, trainloader)
+    
     trainer.test(model, testloader)
+    trainer.save_checkpoint("example2.ckpt")
+    checkpoint_callback.best_model_path
 
 
 if __name__ == "__main__":

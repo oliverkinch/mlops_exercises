@@ -1,0 +1,8 @@
+experiment:
+  data_dir: /data/processed/
+  batch_size: 64
+  log_freq: 100
+  patience: 3
+  limit_train_batches: 1.0
+  n_epochs: 1
+  lr: 0.01

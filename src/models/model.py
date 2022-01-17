@@ -27,8 +27,9 @@ from torch import nn, optim
 
 
 class MyAwesomeModel(LightningModule):
-    def __init__(self, lr=1e-2):
+    def __init__(self, lr=1e-2, only_features=False):
         super().__init__()
+        self.only_features = only_features
         self.conv1 = nn.Conv2d(1, 32, kernel_size=5)
         self.conv2 = nn.Conv2d(32, 32, kernel_size=5)
         self.conv3 = nn.Conv2d(32, 64, kernel_size=5)
@@ -47,8 +48,10 @@ class MyAwesomeModel(LightningModule):
         x = F.dropout(x, p=0.5, training=self.training)
         x = F.relu(F.max_pool2d(self.conv3(x), 2))
         x = F.dropout(x, p=0.5, training=self.training)
-        x = x.view(-1, 3 * 3 * 64)
-        x = F.relu(self.fc1(x))
+        features = x.view(-1, 3 * 3 * 64)
+        if self.only_features:
+            return features
+        x = F.relu(self.fc1(features))
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
@@ -70,7 +73,7 @@ class MyAwesomeModel(LightningModule):
     def test_step(self, batch, batch_idx):
         data, target = batch
         preds = self(data)
-        # loss = self.criterium(preds, target.long())
+        loss = self.criterium(preds, target.long())
         acc = (target == preds.argmax(dim=-1)).float().mean()
         self.log("test_acc", acc)
 

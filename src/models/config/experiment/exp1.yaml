@@ -3,6 +3,6 @@ data_dir: '/data/processed/'
 batch_size: 64
 log_freq: 100
 patience: 3
-limit_train_batches: 0.2
+limit_train_batches: 1.0
 n_epochs: 1
-lr: 1e-2
+lr: 1e-3
